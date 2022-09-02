@@ -1,0 +1,16 @@
+version: '3.9'
+        
+services:
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - REDIS_PASSWORD=password123
+    ports:
+      - '6379:6379'
+  
+  movie-service:
+    build: .
+    ports:
+      - '8080:80'
+    depends_on:
+      - redis
